@@ -94,14 +94,22 @@ tbody a:hover{opacity:.85}
 .miniBody li{background:#0e1424;border:1px solid var(--bd);border-radius:10px;padding:8px 10px}
 
 /* Página Analytics */
-.page-analytics{grid-template-columns:1fr;height:calc(100vh - 60px)}
+/* Página Analytics — força largura total e distribui as marcas no miolo */
+.page-analytics.page.active{
+  grid-template-columns: 1fr !important; /* anula o 420px + 1fr herdado */
+  height: calc(100vh - 60px);
+}
+
 .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;padding:12px}
-.cardA{background:var(--panel);border:1px solid var(--bd);border-radius:14px;padding:12px}
-.kpi{display:flex;gap:16px;flex-wrap:wrap}
-.kpi .box{flex:1 1 220px;background:#0e1424;border:1px solid var(--bd);border-radius:12px;padding:12px}
-.kpi h3{margin:0 0 6px 0;font-size:13px;color:#cfe1ff}
-.big{font-size:28px;font-weight:800}
-.sub{color:#a9b7d1;font-size:12px}
+.cardA{background:#0f172a;border:1px solid var(--bd);border-radius:14px;padding:12px}
+
+/* Painéis por marca (agora preenche o centro com colunas auto) */
+.brandGrid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap:12px;
+}
+.brandCard{grid-column:auto} /* deixa o auto-fill trabalhar */
 
 /* Painéis por marca */
 .brandGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
@@ -633,3 +641,4 @@ function anBoot(){
 </script>
 </body>
 </html>
+
