@@ -11,55 +11,52 @@
 
 <style>
 :root{
-  --bg:#0b0f19; --panel:#0f172a; --muted:#9fb0cf; --text:#f4f7ff; --bd:#1b2a4b;
-  --btn:#101a30; --btnbd:#21355f; --btnh:#17254a;
-  --ec:#00ff66; --conc:#ff2a8f; --mapbg:#eef2f7;
-  --pbg:#fff; --ptxt:#0d1520; --pmut:#566b87;
+  --bg:#0b0f19; --panel:#0f172a; --muted:#a9b7d1; --text:#f4f7ff; --bd:#1a2440;
+  --btn:#101a30; --btnbd:#22345a; --btnh:#17223b;
+  --ec:#00ff66; --conc:#ff1e8a; --mapbg:#eef2f7;
+  --pbg:#fff; --ptxt:#0d1520; --pmut:#4b5b70;
 }
-*{box-sizing:border-box}
-html,body{height:100%}
+*{box-sizing:border-box} html,body{height:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 ui-rounded,system-ui,"SF Pro Rounded","Inter","Rubik","Nunito","Segoe UI",Arial,sans-serif}
 
-/* TOP */
+/* top bar */
 .top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;background:#0e1422;border-bottom:1px solid var(--bd)}
 .brand{display:flex;align-items:center;gap:8px}
-.brand .badgeEC{width:22px;height:22px;border-radius:6px;background:#0b0f19;border:1px solid #273759;display:grid;place-items:center;font-weight:800}
+.logo{width:22px;height:22px;border-radius:6px;background:linear-gradient(145deg,#0f172a 30%,#1a2440 100%);display:grid;place-items:center;border:1px solid #2a3b63}
+.logo:before{content:"EC";font-weight:900;letter-spacing:.5px;color:#eafff3;font-size:11px}
 .title{font-weight:800}
 .tabs{display:flex;gap:6px}
 .tab{background:#0f172a;border:1px solid var(--bd);color:#cfe1ff;padding:8px 12px;border-radius:10px;cursor:pointer}
-.tab.active{background:#162443;border-color:#3b558e}
+.tab.active{background:#15203a;border-color:#3b558e}
 .controls{display:flex;gap:8px;flex-wrap:wrap}
 .btn{background:var(--btn);border:1px solid var(--btnbd);color:#d6e4ff;padding:8px 12px;border-radius:10px;cursor:pointer}
 .btn:hover{background:var(--btnh);border-color:#3b558e}
 .toggle{display:inline-flex;align-items:center;gap:8px;background:#101a30;border:1px solid #203055;color:#cfe1ff;padding:6px 10px;border-radius:10px;cursor:pointer}
 .toggle input{accent-color:#39ff14}
 
-/* PAGES */
+/* pages */
 .page{display:none}
 .page.active{display:grid;grid-template-columns:420px 1fr;gap:12px;height:calc(100vh - 60px);padding:12px}
-.panel{background:var(--panel);border:1px solid var(--bd);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.panel{background:#0f172a;border:1px solid var(--bd);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
 .head{padding:10px 12px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center}
 .muted{color:var(--muted);font-size:12px}
 .row{display:flex;gap:8px;padding:10px 12px}
-.input,select{background:#0e1629;border:1px solid #243559;color:#eaf2ff;border-radius:10px;padding:10px}
+.input,select,textarea{background:#0e1629;border:1px solid #243559;color:#eaf2ff;border-radius:10px;padding:10px}
+textarea{min-height:72px}
 
-/* Tabela */
-.tableWrap{flex:1;overflow:auto;scrollbar-width:thin;scrollbar-color:#26314f transparent;overflow-x:hidden}
-.tableWrap::-webkit-scrollbar{width:8px}
-.tableWrap::-webkit-scrollbar-track{background:transparent;border-left:1px solid var(--bd)}
-.tableWrap::-webkit-scrollbar-thumb{background:#26314f;border-radius:8px;border:2px solid transparent;background-clip:content-box}
-.tableWrap::-webkit-scrollbar-thumb:hover{background:#324368;background-clip:content-box}
+/* table */
+.tableWrap{flex:1;overflow:auto}
 table{width:100%;border-collapse:separate;border-spacing:0 6px;padding:6px}
 th,td{padding:10px 12px;text-align:left}
-thead th{position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--bd);cursor:pointer}
+thead th{position:sticky;top:0;background:#0f172a;border-bottom:1px solid var(--bd);cursor:pointer}
 tbody tr{background:#0e1424;border:1px solid var(--bd);border-radius:10px}
 tbody tr:nth-child(even){background:#0d1322}
 tbody td:first-child{font-weight:700}
 tbody a{color:#fff;text-decoration:none}
 tbody a:hover{opacity:.85}
-.pager{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 12px;border-top:1px solid var(--bd)}
+.pager{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 12px}
 
-/* Mapas */
+/* map */
 #map{height:100%;min-height:360px;border:1px solid var(--bd);border-radius:14px;background:var(--mapbg);flex:1}
 .legend{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.85);color:#0d1520;border:1px solid #e2e8f5;border-radius:10px;padding:6px 8px;font-size:12px;display:flex;gap:10px;align-items:center}
 .dot{width:10px;height:10px;border-radius:50%}
@@ -74,7 +71,7 @@ tbody a:hover{opacity:.85}
 .btnL:hover{background:#eef3fa;border-color:#39ff14}
 .btnRow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 
-/* Modal principal */
+/* modal (município + mapa local) */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999}
 .modal.open{display:flex}
 .card{width:min(1120px,96vw);background:#0e1422;border:1px solid var(--bd);border-radius:14px;overflow:hidden}
@@ -85,68 +82,93 @@ tbody a:hover{opacity:.85}
 .badge{display:inline-flex;align-items:center;gap:6px;background:#101a30;border:1px solid #203055;color:#cfe1ff;padding:6px 10px;border-radius:999px;font-size:12px}
 .info{background:#0f172a;border:1px dashed #334769;color:#d5e3ff;padding:6px 10px;border-radius:8px;margin:8px 0;font-size:12px}
 
-/* Mini-modal lista */
-.miniModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45);z-index:10000}
+/* mini list modal */
+.miniModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45);z-index:10050}
 .miniBox{width:min(640px,92vw);background:#0f172a;color:var(--text);border:1px solid var(--bd);border-radius:12px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.35)}
 .miniHead{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid var(--bd)}
 .miniBody{max-height:60vh;overflow:auto;padding:10px 12px}
 .miniBody ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .miniBody li{background:#0e1424;border:1px solid var(--bd);border-radius:10px;padding:8px 10px}
 
-/* Página Analytics */
-/* Página Analytics — força largura total e distribui as marcas no miolo */
-.page-analytics.page.active{
-  grid-template-columns: 1fr !important; /* anula o 420px + 1fr herdado */
-  height: calc(100vh - 60px);
-}
-
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;padding:12px}
-.cardA{background:#0f172a;border:1px solid var(--bd);border-radius:14px;padding:12px}
-
-/* Painéis por marca (agora preenche o centro com colunas auto) */
-.brandGrid{
+/* ====== ANALYTICS LAYOUT CORRIGIDO ====== */
+.page-analytics{ grid-template-columns: 1fr; height:calc(100vh - 60px); padding:12px; }
+#pageAnalytics.page { grid-template-columns: 1fr !important; } /* reforço para não herdar grid da .page.active */
+.anLayout{
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns:360px minmax(0,1fr); /* esquerda fixa + direita elástica */
   gap:12px;
+  height:100%;
+  width:100%; /* garante preencher a largura toda */
 }
-.brandCard{grid-column:auto} /* deixa o auto-fill trabalhar */
+.anLeft{
+  display:grid; grid-auto-rows:min-content; gap:12px;
+  position:sticky; top:12px; align-self:start;
+  height:calc(100vh - 84px); overflow:auto; padding-right:4px;
+}
+.cardA{background:#0f172a;border:1px solid var(--bd);border-radius:14px;padding:12px}
+.cardA.upload .drop{
+  min-height:120px; display:grid; place-content:center; text-align:center;
+  border:1px dashed #2e3e63; border-radius:12px; padding:14px; background:#0e1629; color:#cfe1ff;
+}
+.fileList{
+  max-height:160px; overflow:auto; background:#0e1424; border:1px solid var(--bd);
+  border-radius:8px; padding:8px; margin-top:8px; color:#8ea6cc; font-size:12px;
+}
+.kpiBox h3{margin:0 0 6px 0;font-size:13px;color:#cfe1ff}
+.big{font-size:28px;font-weight:800}
+.sub{color:#a9b7d1;font-size:12px}
 
-/* Painéis por marca */
-.brandGrid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
-.brandCard{grid-column:span 4;background:#0e1424;border:1px solid var(--bd);border-radius:12px;padding:10px}
-.brandHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-.brandName{font-weight:800}
-.badgeMini{font-size:11px;border:1px solid #2a3d69;background:#0f172a;border-radius:999px;padding:2px 8px}
+.anRight{
+  display:flex; flex-direction:column; gap:12px;
+  min-width:0; width:100%;
+  height:100%;
+  overflow-y:auto;        /* rola vertical se precisar */
+  overflow-x:visible;     /* sem “corte” lateral */
+}
+.heroEC{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.heroEC h3{margin:0 0 4px 0}
+.heroMetrics{display:flex;gap:18px;align-items:center}
+.heroVal{font-size:22px;font-weight:800}
 
-/* Modal editar marca + submodal influenciadores */
-.modalSm{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:11000}
-.boxSm{width:min(840px,96vw);background:#0f172a;border:1px solid var(--bd);border-radius:12px;overflow:hidden}
-.boxHead{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--bd)}
-.boxBody{padding:12px}
-.formRow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}
-.inputSm{background:#0e1629;border:1px solid #243559;color:#eaf2ff;border-radius:10px;padding:10px;width:100%}
-.inflList{display:grid;gap:8px}
-.inflItem{display:flex;gap:8px;align-items:center}
-.inflItem input{flex:1}
+/* grade que ocupa toda a faixa direita e se adapta ao espaço */
+.brandGrid{
+  flex:1 1 auto; min-height:0; width:100%;
+  display:grid; gap:12px; align-content:start; padding-bottom:12px;
+  grid-auto-rows:minmax(150px,auto);
+  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); /* preenche até a borda direita */
+  overflow-y:auto;
+  overflow-x:hidden; /* sem barra horizontal */
+}
+.brandCard{background:#0e1424;border:1px solid var(--bd);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:150px}
+.brandCard h4{margin:0;font-size:14px}
+.brandMeta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.delta{font-weight:700}
+.bad{color:#ff7a7a} .good{color:#58ff9c}
+
+@media (max-width:980px){
+  .anLayout{grid-template-columns:1fr;}
+  .anRight{order:2} .anLeft{order:1}
+  .brandGrid{grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));}
+}
 </style>
 </head>
 <body>
   <div class="top">
-    <div class="brand"><div class="badgeEC">EC</div><div class="title">GeoAnalytics <b>EC</b></div></div>
+    <div class="brand"><div class="logo"></div><div class="title">GeoAnalytics <b>EC</b></div></div>
     <div class="tabs">
       <button id="tabMap" class="tab active">Mapa & Municípios</button>
       <button id="tabAn"  class="tab">Analytics</button>
     </div>
-    <div class="controls">
+    <div class="controls" id="controls">
       <button id="btnEC" class="btn">⤴︎ Importar Unidades EC</button><input id="fileEC" type="file" accept=".csv" style="display:none"/>
       <button id="btnConc" class="btn">⤴︎ Importar Concorrentes</button><input id="fileConc" type="file" accept=".csv" style="display:none"/>
       <label class="toggle"><input id="tEC" type="checkbox" checked> EC</label>
-      <label class="toggle"><input id="tConc" type="checkbox"> Concorrentes</label>
+      <label class="toggle"><input id="tConc" type="checkbox" checked> Concorrentes</label>
       <button id="fit" class="btn">⤢ Enquadrar</button>
     </div>
   </div>
 
-  <!-- PAGE 1 -->
+  <!-- PAGE MAP -->
   <div id="pageMap" class="page active">
     <section class="panel">
       <div class="head">
@@ -184,42 +206,77 @@ tbody a:hover{opacity:.85}
     </section>
   </div>
 
-  <!-- PAGE 2 -->
+  <!-- PAGE ANALYTICS -->
   <div id="pageAnalytics" class="page page-analytics">
-    <div class="grid">
-      <div class="cardA" style="grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between">
-        <div class="kpi" style="flex:1 1 auto">
-          <div class="box">
-            <h3>Total de Concorrentes — Variação mensal</h3>
-            <div class="big" id="kpiConc">+0.0%</div>
-            <div class="sub">vs mês anterior</div>
-          </div>
-          <div class="box">
-            <h3>População — Variação vs ano base</h3>
-            <div class="big" id="kpiPop">+0.0%</div>
-            <div class="sub">Ano base: <select id="baseYear" class="input" style="padding:6px 8px"></select></div>
+    <div class="anLayout">
+
+      <!-- ESQUERDA -->
+      <aside class="anLeft">
+        <!-- Uploads -->
+        <div class="cardA upload">
+          <h3 class="muted" style="margin:0 0 8px">Base de relatórios (uploads)</h3>
+          <label class="drop" id="dropArea" for="fileRepo">
+            Arraste arquivos aqui ou <u style="cursor:pointer">clique para selecionar</u>.
+          </label>
+          <input id="fileRepo" type="file" multiple style="display:none"/>
+          <div id="fileList" class="fileList">Nenhum arquivo enviado ainda.</div>
+        </div>
+
+        <!-- Gerador de relatório -->
+        <div class="cardA">
+          <h3 class="muted" style="margin:0 0 8px">Gerador de relatório</h3>
+          <div style="display:grid;gap:8px">
+            <label class="muted">Mês
+              <input id="repMonth" class="input" placeholder="---- de ----"/>
+            </label>
+            <label class="muted" style="display:flex;align-items:center;gap:8px">
+              <input id="repCharts" type="checkbox" checked style="accent-color:#39ff14"> Incluir gráficos
+            </label>
+            <label class="muted">Observações
+              <textarea id="repNotes" class="input" placeholder="Notas, decisões, próximos passos…"></textarea>
+            </label>
+            <button id="repMake" class="btn" type="button">Gerar .HTML</button>
           </div>
         </div>
-      </div>
 
-      <div class="cardA" style="grid-column:1/-1">
-        <h3 class="muted" style="margin:0 0 6px 0">Concorrentes por mês</h3>
-        <canvas id="chConc" height="140"></canvas>
-      </div>
+        <!-- KPIs -->
+        <div class="cardA kpiBox">
+          <h3>Concorrentes — Variação mensal</h3>
+          <div class="big" id="kpiConc">+0.0%</div>
+          <div class="sub">vs mês anterior</div>
+        </div>
 
-      <div class="cardA" style="grid-column:1/-1">
-        <h3 class="muted" style="margin:0 0 10px 0">Marcas (atualização individual)</h3>
+        <div class="cardA kpiBox">
+          <h3>População — Variação vs ano base</h3>
+          <div class="big" id="kpiPop">+0.0%</div>
+          <div class="sub">Ano base:
+            <select id="baseYear" class="input" style="padding:6px 8px;margin-left:6px"></select>
+          </div>
+        </div>
+      </aside>
+
+      <!-- DIREITA -->
+      <main class="anRight">
+        <!-- EC destaque -->
+        <div class="cardA heroEC">
+          <div>
+            <h3>Engenharia do Corpo</h3>
+            <div class="heroMetrics">
+              <div>Unidades: <span id="ecUnits" class="heroVal">0</span></div>
+              <div>Alcance: <span id="ecReach" class="heroVal">0</span></div>
+            </div>
+          </div>
+          <div><button id="ecUpdate" class="btn">Atualizar</button></div>
+        </div>
+
+        <!-- Grade concorrentes -->
         <div id="brandGrid" class="brandGrid"></div>
-      </div>
+      </main>
 
-      <div class="cardA" style="grid-column:1/-1">
-        <h3 class="muted" style="margin:0 0 6px 0">População por ano</h3>
-        <canvas id="chPop" height="140"></canvas>
-      </div>
     </div>
   </div>
 
-  <!-- Modal município + mapa local -->
+  <!-- Modal município -->
   <div id="modal" class="modal" role="dialog" aria-modal="true">
     <div class="card">
       <div class="mHead">
@@ -234,8 +291,8 @@ tbody a:hover{opacity:.85}
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px">
           <label class="toggle"><input type="checkbox" id="mtEC" checked> Mostrar EC</label>
           <label class="toggle"><input type="checkbox" id="mtConc" checked> Mostrar Concorrentes</label>
-          <button class="badge" id="btnListEC" type="button"><span class="dot ec"></span><b>&nbsp;EC no raio</b>: <span id="cEC">0</span></button>
-          <button class="badge" id="btnListConc" type="button"><span class="dot conc"></span><b>&nbsp;Conc no raio</b>: <span id="cConc">0</span></button>
+          <button class="badge" id="btnListEC" type="button"><span class="dot ec"></span><b>EC no raio</b>: <span id="cEC">0</span></button>
+          <button class="badge" id="btnListConc" type="button"><span class="dot conc"></span><b>Conc no raio</b>: <span id="cConc">0</span></button>
         </div>
         <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px">
           <label class="toggle">Raio: <input type="range" id="radius" min="0.5" max="10" step="0.5" value="2"/>&nbsp;<span id="rLabel">2</span>&nbsp;km</label>
@@ -247,7 +304,6 @@ tbody a:hover{opacity:.85}
       </div>
     </div>
 
-    <!-- Pop-up listagem -->
     <div id="mini" class="miniModal">
       <div class="miniBox">
         <div class="miniHead">
@@ -259,386 +315,364 @@ tbody a:hover{opacity:.85}
     </div>
   </div>
 
-  <!-- Modal Editar Marca -->
-  <div id="mdBrand" class="modalSm">
-    <div class="boxSm">
-      <div class="boxHead">
-        <strong id="mdBrandTitle">Atualizar — Marca</strong>
-        <button id="mdBrandClose" class="btn">Fechar ✕</button>
+  <!-- Modal Marca + Influenciadores -->
+  <div id="brandModal" class="modal">
+    <div class="card" style="width:min(820px,96vw)">
+      <div class="mHead">
+        <strong id="brandTitle">Atualizar — Marca</strong>
+        <button id="brandClose" class="btn">Fechar ✕</button>
       </div>
-      <div class="boxBody">
-        <div class="formRow">
-          <input id="bUnits" class="inputSm" type="number" placeholder="Unidades (mês atual)"/>
-          <input id="bIg" class="inputSm" type="number" placeholder="Seguidores Instagram"/>
-        </div>
-        <div class="formRow">
-          <input id="bTt" class="inputSm" type="number" placeholder="Seguidores TikTok"/>
-          <div style="display:flex;gap:8px;align-items:center">
-            <input id="bInflTotal" class="inputSm" type="number" placeholder="Influenciadores (total seguidores)" />
-            <button id="btnOpenInfl" class="btn" type="button">Gerir influenciadores…</button>
+      <div class="mBody">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <div class="muted">Unidades (mês atual)</div>
+            <input id="bUnits" type="number" class="input" placeholder="ex.: 42">
+          </div>
+          <div>
+            <div class="muted">Seguidores Instagram</div>
+            <input id="bIg" type="number" class="input" placeholder="ex.: 1200000">
+          </div>
+          <div>
+            <div class="muted">Seguidores TikTok</div>
+            <input id="bTt" type="number" class="input" placeholder="ex.: 900000">
+          </div>
+          <div>
+            <div class="muted">Influenciadores (soma de seguidores)</div>
+            <input id="bInfTotal" type="number" class="input" placeholder="preenchido automaticamente">
+            <div style="margin-top:6px"><button id="btnOpenInf" class="btn" type="button">Gerenciar influenciadores</button></div>
           </div>
         </div>
-        <button id="bSave" class="btn">Salvar</button>
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+          <button id="bSave" class="btn">Salvar</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Submodal Influenciadores -->
-  <div id="mdInfl" class="modalSm">
-    <div class="boxSm" style="max-width:720px">
-      <div class="boxHead">
-        <strong id="mdInflTitle">Influenciadores — Marca</strong>
-        <button id="mdInflClose" class="btn">Fechar ✕</button>
+  <!-- Sub-modal Influenciadores -->
+  <div id="infModal" class="modal">
+    <div class="card" style="width:min(640px,96vw)">
+      <div class="mHead">
+        <strong id="infTitle">Influenciadores</strong>
+        <button id="infClose" class="btn">Fechar ✕</button>
       </div>
-      <div class="boxBody">
-        <div id="inflList" class="inflList"></div>
-        <div style="display:flex;gap:8px;margin-top:10px">
-          <button id="inflAdd" class="btn">+ Adicionar influenciador</button>
-          <button id="inflSave" class="btn">Salvar lista</button>
+      <div class="mBody">
+        <div id="infList" style="display:grid;gap:8px"></div>
+        <button id="infAdd" class="btn" type="button" style="margin-top:8px">+ Adicionar</button>
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+          <button id="infSave" class="btn">Salvar lista</button>
         </div>
-        <div class="muted" style="margin-top:8px">A soma dos seguidores aparece automaticamente no campo “Influenciadores (total seguidores)” da tela anterior.</div>
       </div>
     </div>
   </div>
 
 <script>
 'use strict';
-/* ===== Helpers ===== */
-const $ = q=>document.querySelector(q);
-const $$ = q=>Array.from(document.querySelectorAll(q));
-const norm = s => { try{return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}catch(_){return String(s||'').toLowerCase()} };
-const fmt = n => Number(n||0).toLocaleString('pt-BR');
-const toNum = v => v==null?NaN:Number(String(v).replace(',','.'));
-const withinBR = (lat,lng)=> lat>-34&&lat<6&&lng>-74&&lng<-34;
-function csvParse(text){ const lines=String(text).replace(/\r/g,'').split('\n').filter(Boolean); const h=lines.shift().split(',').map(s=>s.trim()); return lines.map(l=>{const c=l.split(','),o={};for(let i=0;i<h.length;i++)o[h[i]]=c[i]||'';return o;}); }
-function splitCsvLine(line){ const out=[],L=line.length; let cur='',q=false; for(let i=0;i<L;i++){const ch=line[i]; if(ch==='\"'){if(q&&line[i+1]==='\"'){cur+='\"';i++;}else q=!q;} else if(ch===','&&!q){out.push(cur);cur='';} else cur+=ch;} out.push(cur); return out;}
-function parseCsvSmart(text){ const lines=String(text).replace(/\r/g,'').split('\n').filter(l=>l.trim()); const hdr=splitCsvLine(lines.shift()).map(h=>h.trim().toLowerCase()); return lines.map(line=>{const cols=splitCsvLine(line); const o={}; for(let i=0;i<hdr.length;i++) o[hdr[i]]=(cols[i]||'').trim(); return o;}); }
-function cacheGet(k){ try{const x=localStorage.getItem(k); return x?JSON.parse(x):null;}catch{return null} }
-function cacheSet(k,v){ try{localStorage.setItem(k,JSON.stringify(v));}catch{} }
+/* ==== helpers ==== */
+var $=function(q){return document.querySelector(q)}, $$=function(q){return Array.prototype.slice.call(document.querySelectorAll(q));};
+function norm(s){ try{return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}catch(_){return String(s||'').toLowerCase()} }
+function fmt(n){ return Number(n||0).toLocaleString('pt-BR'); }
+function toNum(v){ return v==null?NaN:Number(String(v).replace(',','.')); }
+function cacheGet(k){ try{var x=localStorage.getItem(k); return x?JSON.parse(x):null;}catch(e){return null} }
+function cacheSet(k,v){ try{localStorage.setItem(k,JSON.stringify(v));}catch(e){} }
+function thisMonthKey(){ var d=new Date(); return d.toISOString().slice(0,7); }
 
-/* ===== Estado ===== */
-const S={ mun:[], filt:[], sort:{k:'nome',d:'asc'}, page:0, size:100, radius:2 };
-const A={ ec:[], conc:[] };
-
-/* ===== Ícones ===== */
-const iconEC = ()=> L.divIcon({html:'<div class="pin ec"></div>',className:'',iconSize:[7,7],iconAnchor:[3.5,3.5]});
-const iconCO = ()=> L.divIcon({html:'<div class="pin comp"></div>',className:'',iconSize:[7,7],iconAnchor:[3.5,3.5]});
-
-/* ===== Tabs ===== */
+/* ==== tabs: mostrar controles só no MAPA ==== */
 function setTab(which){
   $('#pageMap').classList.toggle('active',which==='map');
   $('#pageAnalytics').classList.toggle('active',which==='an');
   $('#tabMap').classList.toggle('active',which==='map');
   $('#tabAn').classList.toggle('active',which==='an');
+  $('#controls').style.display = (which==='map') ? 'flex' : 'none';
+  if(which==='an' && !AN.ready){ anBoot(); AN.ready=true; }
 }
-$('#tabMap').onclick=()=>setTab('map');
-$('#tabAn').onclick =()=>{ setTab('an'); if(!AN.ready) { anBoot(); AN.ready=true; } };
+$('#tabMap').onclick=function(){setTab('map')};
+$('#tabAn').onclick=function(){setTab('an')};
 
-/* ===== Página MAPA ===== */
-let map, LEC=L.layerGroup(), LCO=L.layerGroup();
-function baseLayers(m){ let base=null, errs=0; const provs=[
+/* ====== MAPA ====== */
+var map, LEC=L.layerGroup(), LCO=L.layerGroup();
+function baseLayers(m){ var base=null, errs=0; var provs=[
   {u:'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', l:'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png'},
-  {u:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'},
-  {u:'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'}
-]; (function use(i){ const p=provs[i]; if(!p) return; if(base) try{m.removeLayer(base);}catch{}; base=L.tileLayer(p.u,{maxZoom:19,subdomains:'abcd'}).addTo(m); if(p.l) L.tileLayer(p.l,{maxZoom:19,subdomains:'abcd'}).addTo(m); base.on('tileerror',()=>{ if(++errs>4) use(i+1); }); })(0); }
-function initMap(){ map=L.map('map',{preferCanvas:true}).setView([-15.78,-47.93],4); baseLayers(map); LEC.addTo(map); setTimeout(()=>map.invalidateSize(),200); $('#tEC').onchange=renderMain; $('#tConc').onchange=renderMain; $('#fit').onclick=fitAll; }
-function popGeneral(a){ const gm=`https://www.google.com/maps/search/?api=1&query=${a.lat},${a.lng}`; return `<div style="font-weight:700">${a.unit_name||a.brand}</div><div class="pmut">${a.brand}${a.city?(' • '+a.city):''}${a.state?('/'+a.state):''}</div>${a.address?('<div class="pmut">'+a.address+'</div>'):''}<div class="btnRow"><a class="btnL" target="_blank" href="${gm}">Google Maps</a></div>`}
-function renderMain(){
-  LEC.clearLayers(); LCO.clearLayers();
-  if($('#tEC').checked){ A.ec.forEach(a=>L.marker([a.lat,a.lng],{icon:iconEC()}).bindPopup(popGeneral(a)).addTo(LEC)); if(!map.hasLayer(LEC)) LEC.addTo(map);} else try{map.removeLayer(LEC)}catch{};
-  if($('#tConc').checked){ A.conc.forEach(a=>L.marker([a.lat,a.lng],{icon:iconCO()}).bindPopup(popGeneral(a)).addTo(LCO)); if(!map.hasLayer(LCO)) LCO.addTo(map);} else try{map.removeLayer(LCO)}catch{};
-}
-function fitAll(){ const ls=[...LEC.getLayers(),...LCO.getLayers()]; if(ls.length){ const g=L.featureGroup(ls); try{map.fitBounds(g.getBounds().pad(0.2))}catch{} } else map.setView([-15.78,-47.93],4); }
+  {u:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
+]; (function use(i){ var p=provs[i]; if(!p) return; if(base) try{m.removeLayer(base);}catch(e){} base=L.tileLayer(p.u,{maxZoom:19,subdomains:'abcd'}).addTo(m); if(p.l) L.tileLayer(p.l,{maxZoom:19,subdomains:'abcd'}).addTo(m); base.on('tileerror',function(){ if(++errs>4) use(i+1); }); })(0); }
+function initMap(){ map=L.map('map',{preferCanvas:true}).setView([-15.78,-47.93],4); baseLayers(map); LEC.addTo(map); setTimeout(function(){map.invalidateSize()},200); $('#tEC').onchange=renderMain; $('#tConc').onchange=renderMain; $('#fit').onclick=fitAll; }
+function popGeneral(a){ var gm='https://www.google.com/maps/search/?api=1&query='+a.lat+','+a.lng; return '<div style="font-weight:700">'+(a.unit_name||a.brand||'Academia')+'</div><div class="pmut">'+(a.brand||'')+(a.city?(' • '+a.city):'')+(a.state?('/'+a.state):'')+'</div>'+(a.address?('<div class="pmut">'+a.address+'</div>'):'')+'<div class="btnRow"><a class="btnL" target="_blank" href="'+gm+'">Google Maps</a></div>'; }
+var A={ ec:[], conc:[] };
+function renderMain(){ LEC.clearLayers(); LCO.clearLayers(); if($('#tEC').checked){ A.ec.forEach(function(a){ L.marker([a.lat,a.lng],{icon:L.divIcon({html:'<div class="pin ec"></div>',className:'',iconSize:[7,7],iconAnchor:[3.5,3.5]})}).bindPopup(popGeneral(a)).addTo(LEC); }); if(!map.hasLayer(LEC)) LEC.addTo(map);} else try{map.removeLayer(LEC)}catch(e){} if($('#tConc').checked){ A.conc.forEach(function(a){ L.marker([a.lat,a.lng],{icon:L.divIcon({html:'<div class="pin comp"></div>',className:'',iconSize:[7,7],iconAnchor:[3.5,3.5]})}).bindPopup(popGeneral(a)).addTo(LCO); }); if(!map.hasLayer(LCO)) LCO.addTo(map);} else try{map.removeLayer(LCO)}catch(e){} }
+function fitAll(){ var ls=[].concat(LEC.getLayers(),LCO.getLayers()); if(ls.length){ var g=L.featureGroup(ls); try{map.fitBounds(g.getBounds().pad(0.2))}catch(e){} } else map.setView([-15.78,-47.93],4); }
 
-function buildUFs(){ const sel=$('#uf'); sel.innerHTML='<option value="">Todas as UFs</option>'; [...new Set(S.mun.map(m=>m.uf))].sort().forEach(uf=>{ const o=document.createElement('option'); o.value=uf; o.textContent=uf; sel.appendChild(o); }); }
-function apply(){ const q=norm($('#q').value), uf=$('#uf').value; S.filt=S.mun.filter(m=>(!uf||m.uf===uf)&&(!q||norm(m.nome+' '+m.uf).includes(q))); S.page=0; renderTable(); }
+/* ====== municípios (amostra + cache + rede) ====== */
+var S={ mun:[], filt:[], sort:{k:'nome',d:'asc'}, page:0, size:100, radius:2 };
+function setStatus(t){ $('#status').textContent=t; }
+var CAPS=[['Rio Branco','AC',-9.975,-67.824,413418,'1200401'],['Maceió','AL',-9.649,-35.708,957916,'2704302'],['Macapá','AP',0.0349,-51.069,522357,'1600303'],['Manaus','AM',-3.118,-60.021,2020301,'1302603'],['Salvador','BA',-12.977,-38.501,2833127,'2927408'],['Fortaleza','CE',-3.716,-38.542,2452185,'2304400'],['Brasília','DF',-15.793,-47.882,3094325,'5300108'],['Vitória','ES',-20.315,-40.312,365855,'3205309'],['Goiânia','GO',-16.686,-49.264,1572001,'5208707'],['São Luís','MA',-2.538,-44.282,1002121,'2111300'],['Cuiabá','MT',-15.601,-56.097,651642,'5103403'],['Campo Grande','MS',-20.442,-54.646,930614,'5002704'],['Belo Horizonte','MG',-19.919,-43.938,2513451,'3106200'],['Belém','PA',-1.455,-48.489,1511996,'1501402'],['João Pessoa','PB',-7.115,-34.864,833932,'2507507'],['Curitiba','PR',-25.429,-49.271,1948626,'4106902'],['Recife','PE',-8.057,-34.882,1635019,'2611606'],['Teresina','PI',-5.091,-42.803,871126,'2211001'],['Rio de Janeiro','RJ',-22.906,-43.172,6775561,'3304557'],['Natal','RN',-5.795,-35.209,751300,'2408102'],['Porto Alegre','RS',-30.033,-51.23,1492530,'4314902'],['Porto Velho','RO',-8.760,-63.899,539354,'1100205'],['Boa Vista','RR',2.823,-60.675,413486,'1400100'],['Florianópolis','SC',-27.594,-48.547,537211,'4205407'],['São Paulo','SP',-23.550,-46.633,12396372,'3550308'],['Aracaju','SE',-10.911,-37.071,602757,'2800308'],['Palmas','TO',-10.167,-48.327,313349,'1721000']].map(function(x){return {nome:x[0],uf:x[1],lat:x[2],lng:x[3],pop:x[4],codigo_ibge:x[5]}});
+
+function buildUFs(){ var sel=$('#uf'); sel.innerHTML='<option value="">Todas as UFs</option>'; var ufs={}; S.mun.forEach(function(m){ufs[m.uf]=1}); Object.keys(ufs).sort().forEach(function(uf){ var o=document.createElement('option'); o.value=uf; o.textContent=uf; sel.appendChild(o); }); }
+function apply(){ var q=norm($('#q').value), uf=$('#uf').value; S.filt=S.mun.filter(function(m){return (!uf||m.uf===uf)&&(!q||norm(m.nome+' '+m.uf).includes(q))}); S.page=0; renderTable(); }
 function sortBy(k){ S.sort.d=(S.sort.k===k&&S.sort.d==='asc')?'desc':'asc'; S.sort.k=k; renderTable(); }
-function renderTable(){
-  const k=S.sort.k,d=S.sort.d;
-  const arr=[...S.filt].sort((a,b)=> d==='asc'? String(a[k]).localeCompare(String(b[k]),'pt-BR',{numeric:true}) : String(b[k]).localeCompare(String(a[k]),'pt-BR',{numeric:true}));
-  const i=S.page*S.size, j=Math.min(i+S.size,arr.length);
-  const tb=$('#tb'); tb.innerHTML='';
-  arr.slice(i,j).forEach(m=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td><a href="#" data-id="${m.codigo_ibge}">${m.nome}</a></td><td>${m.uf}</td><td>${fmt(m.pop)}</td>`; tb.appendChild(tr); });
-  $('#pg').textContent=`${arr.length?(i+1):0}–${j} de ${arr.length}`; $('#prev').disabled=S.page===0; $('#next').disabled=j>=arr.length;
-}
-$('#prev').onclick=()=>{ if(S.page>0){ S.page--; renderTable(); } };
-$('#next').onclick=()=>{ const max=Math.ceil(S.filt.length/S.size)-1; if(S.page<max){ S.page++; renderTable(); } };
-$('#q').addEventListener('input',apply); $('#uf').addEventListener('change',apply); $$('thead th[data-k]').forEach(th=>th.addEventListener('click',()=>sortBy(th.dataset.k)));
-document.addEventListener('click',(e)=>{ const a=e.target.closest('a[data-id]'); if(a){ e.preventDefault(); const id=a.getAttribute('data-id'); const m=S.mun.find(x=>String(x.codigo_ibge)===String(id)); if(m) openMunicipio(m); } });
+function renderTable(){ var k=S.sort.k,d=S.sort.d; var arr=[].concat(S.filt).sort(function(a,b){ return d==='asc'? String(a[k]).localeCompare(String(b[k]),'pt-BR',{numeric:true}) : String(b[k]).localeCompare(String(a[k]),'pt-BR',{numeric:true}) }); var i=S.page*S.size, j=Math.min(i+S.size,arr.length); var tb=$('#tb'); tb.innerHTML=''; arr.slice(i,j).forEach(function(m){ var tr=document.createElement('tr'); tr.innerHTML='<td><a href="#" data-id="'+m.codigo_ibge+'">'+m.nome+'</a></td><td>'+m.uf+'</td><td>'+fmt(m.pop)+'</td>'; tb.appendChild(tr); }); $('#pg').textContent=(arr.length?(i+1):0)+'–'+j+' de '+arr.length; $('#prev').disabled=S.page===0; $('#next').disabled=j>=arr.length; }
+$('#prev').onclick=function(){ if(S.page>0){ S.page--; renderTable(); } }; $('#next').onclick=function(){ var max=Math.ceil(S.filt.length/S.size)-1; if(S.page<max){ S.page++; renderTable(); } };
+$('#q').addEventListener('input',apply); $('#uf').addEventListener('change',apply); $$('thead th[data-k]').forEach(function(th){ th.addEventListener('click',function(){sortBy(th.dataset.k)})});
+document.addEventListener('click',function(e){ var a=e.target.closest && e.target.closest('a[data-id]'); if(a){ e.preventDefault(); var id=a.getAttribute('data-id'); var m=S.mun.find(function(x){return String(x.codigo_ibge)===String(id)}); if(m) openMunicipio(m); } });
 
-/* Modal município */
-let mm, cur=null, mMark,mCircle,LmEC,LmCO, measuring=false, mPts=[], mLine=null, mMarks=[];
-function km(m){return (m/1000).toFixed(2)+' km'}
-function eta(m){const road=1.35, kmv=(m/1000)*road; return {car:Math.round(kmv/35*60),walk:Math.round(kmv/5*60)}}
-function measureReset(){ measuring=false; mPts=[]; if(mLine){try{mLine.remove()}catch{} mLine=null; } mMarks.forEach(x=>{try{x.remove()}catch{}}); mMarks=[]; $('#measureInfo').style.display='none'; }
-function measureAdd(ll){ mPts.push(ll); mMarks.push(L.circleMarker(ll,{radius:4,color:'#687ca0'}).addTo(mm)); if(mPts.length===2){ const [a,b]=mPts; mLine=L.polyline([a,b],{color:'#687ca0',dashArray:'4,4'}).addTo(mm); const d=mm.distance(a,b); $('#measureInfo').textContent='Distância: '+km(d)+' (reta)'; measuring=false; } }
-function setCenter(ll){ mMark.setLatLng(ll); mCircle.setLatLng(ll); mm.panTo(ll); refreshM(); }
-function geoSave(k,ll){ try{ const c=JSON.parse(localStorage.getItem('geo_v1')||'{}'); c[k]={ts:Date.now(),ll}; localStorage.setItem('geo_v1',JSON.stringify(c)); }catch{} }
-async function geocode(m){
-  const key=m.nome+'|'+m.uf;
-  try{ const c=JSON.parse(localStorage.getItem('geo_v1')||'{}'); if(c[key]&&Date.now()-c[key].ts<31536e6) return c[key].ll; }catch{}
-  const q=encodeURIComponent(m.nome+', '+m.uf+', Brasil');
-  const f=(u,t)=>new Promise((res,rej)=>{ const id=setTimeout(()=>rej(0),t); fetch(u).then(r=>r.ok?r.json():Promise.reject()).then(j=>{clearTimeout(id);res(j)}).catch(()=>{clearTimeout(id);rej(0)}); });
-  try{ const d=await f('https://photon.komoot.io/api/?q='+q+'&limit=1&lang=pt',3500); if(d&&d.features&&d.features[0]){ const [lng,lat]=d.features[0].geometry.coordinates; if(withinBR(lat,lng)){ geoSave(key,{lat:lat,lng:lng}); return {lat:lat,lng:lng}; } } }catch(_){}
-  try{ const d=await f('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q='+q,3000); if(d&&d[0]){ const lat=+d[0].lat, lng=+d[0].lon; if(withinBR(lat,lng)){ geoSave(key,{lat:lat,lng:lng}); return {lat:lat,lng:lng}; } } }catch(_){}
-  return null;
+/* geocoder + modal mapa local (igual ao seu fluxo anterior) */
+var mm, cur=null, mMark,mCircle,LmEC,LmCO, measuring=false, mPts=[], mLine=null, mMarks=[];
+function km(m){return (m/1000).toFixed(2)+' km'} function eta(m){var road=1.35, kmv=(m/1000)*road; return {car:Math.round(kmv/35*60),walk:Math.round(kmv/5*60)}}
+function measureReset(){ measuring=false; mPts=[]; if(mLine){try{mLine.remove()}catch(e){} mLine=null;} mMarks.forEach(function(x){try{x.remove()}catch(e){}}); mMarks=[]; $('#measureInfo').style.display='none'; }
+function geoSave(k,ll){ try{ var c=JSON.parse(localStorage.getItem('geo_v1')||'{}'); c[k]={ts:Date.now(),ll:ll}; localStorage.setItem('geo_v1',JSON.stringify(c)); }catch(e){} }
+function geocode(m){ var key=m.nome+'|'+m.uf; try{ var c=JSON.parse(localStorage.getItem('geo_v1')||'{}'); if(c[key]&&Date.now()-c[key].ts<31536e6) return Promise.resolve(c[key].ll); }catch(e){} var q=encodeURIComponent(m.nome+', '+m.uf+', Brasil'); function f(u,t){return new Promise(function(res,rej){ var id=setTimeout(function(){rej(0)},t); fetch(u).then(function(r){return r.ok?r.json():Promise.reject()}).then(function(j){clearTimeout(id);res(j)}).catch(function(){clearTimeout(id);rej(0)})})}
+  return f('https://photon.komoot.io/api/?q='+q+'&limit=1&lang=pt',3500).then(function(d){
+    if(d&&d.features&&d.features[0]){ var lng=d.features[0].geometry.coordinates[0], lat=d.features[0].geometry.coordinates[1]; if(lat>-34&&lat<6&&lng>-74&&lng<-34){ geoSave(key,{lat:lat,lng:lng}); return {lat:lat,lng:lng};}}
+    return f('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q='+q,3000).then(function(d2){ if(d2&&d2[0]){ var lat=+d2[0].lat, lng=+d2[0].lon; if(lat>-34&&lat<6&&lng>-74&&lng<-34){ geoSave(key,{lat:lat,lng:lng}); return {lat:lat,lng:lng}; } } return null;});
+  }).catch(function(){return null});
 }
-function openMunicipio(m){
-  cur=m; $('#mTitle').textContent=m.nome+' / '+m.uf+' — População 2022: '+fmt(m.pop); $('#radius').value=String(S.radius); $('#rLabel').textContent=String(S.radius); $('#mtEC').checked=true; $('#mtConc').checked=true; measureReset(); $('#modal').classList.add('open'); setTimeout(()=>ensureLocal(),10);
-}
+function openMunicipio(m){ cur=m; $('#mTitle').textContent=m.nome+' / '+m.uf+' — População 2022: '+fmt(m.pop); $('#radius').value=String(S.radius); $('#rLabel').textContent=String(S.radius); $('#mtEC').checked=true; $('#mtConc').checked=true; measureReset(); $('#modal').classList.add('open'); setTimeout(ensureLocal,10); }
 function ensureLocal(){
-  const m=cur; if(!m) return;
-  const c=$('#muniMap'); c.innerHTML='';
-  const start=withinBR(m.lat,m.lng)?[m.lat,m.lng]:[-15.78,-47.93];
-  mm=L.map(c,{preferCanvas:true}).setView(start, withinBR(m.lat,m.lng)?12:4); baseLayers(mm);
-  const centerIcon=L.divIcon({html:'<div class="centerDot"></div>',className:'',iconSize:[12,12],iconAnchor:[6,6]});
+  var m=cur; if(!m) return; var c=$('#muniMap'); c.innerHTML='';
+  var start=(m.lat>-34&&m.lat<6&&m.lng>-74&&m.lng<-34)?[m.lat,m.lng]:[-15.78,-47.93];
+  mm=L.map(c,{preferCanvas:true}).setView(start, (m.lat>-34&&m.lat<6)?12:4); baseLayers(mm);
+  var centerIcon=L.divIcon({html:'<div class="centerDot"></div>',className:'',iconSize:[12,12],iconAnchor:[6,6]});
   mMark=L.marker(start,{draggable:true,icon:centerIcon}).addTo(mm);
   mCircle=L.circle(mMark.getLatLng(),{radius:S.radius*1000,color:'#b6a892',fill:false,weight:1}).addTo(mm);
   LmEC=L.layerGroup().addTo(mm); LmCO=L.layerGroup().addTo(mm);
-  const iconE=iconEC, iconC=iconCO;
-  const mkPopup=(a,ll)=>{
-    const ctr=mMark.getLatLng(), d=ctr.distanceTo(ll), et=eta(d);
-    const gm='https://www.google.com/maps/search/?api=1&query='+a.lat+','+a.lng;
-    const car='https://www.google.com/maps/dir/?api=1&origin='+ctr.lat+','+ctr.lng+'&destination='+a.lat+','+a.lng+'&travelmode=driving';
-    const walk='https://www.google.com/maps/dir/?api=1&origin='+ctr.lat+','+ctr.lng+'&destination='+a.lat+','+a.lng+'&travelmode=walking';
-    return '<div style="font-weight:700">'+(a.unit_name||a.brand)+'</div>'
-      +'<div class="pmut">'+a.brand+(a.city?(' • '+a.city):'')+(a.state?('/'+a.state):'')+'</div>'
+
+  function addMK(a,t){ var ll=L.latLng(a.lat,a.lng); var mk=L.marker(ll,{icon:(t==='ec')?L.divIcon({html:'<div class="pin ec"></div>',className:'',iconSize:[7,7],iconAnchor:[3.5,3.5]}):L.divIcon({html:'<div class="pin comp"></div>',className:'',iconSize:[7,7],iconAnchor:[3.5,3.5]})});
+    mk.on('click',function(ev){ if(ev.originalEvent && ev.originalEvent.ctrlKey){ mMark.setLatLng(ll); mCircle.setLatLng(ll); mm.panTo(ll); refresh(); return;} if(measuring){ mPts.push(ll); }});
+    var ctr=mMark.getLatLng(), d=ctr.distanceTo(ll), et=eta(d);
+    var gm='https://www.google.com/maps/search/?api=1&query='+a.lat+','+a.lng;
+    var car='https://www.google.com/maps/dir/?api=1&origin='+ctr.lat+','+ctr.lng+'&destination='+a.lat+','+a.lng+'&travelmode=driving';
+    var walk='https://www.google.com/maps/dir/?api=1&origin='+ctr.lat+','+ctr.lng+'&destination='+a.lat+','+a.lng+'&travelmode=walking';
+    var html='<div style="font-weight:700">'+(a.unit_name||a.brand)+'</div>'
+      +'<div class="pmut">'+(a.brand||'')+(a.city?(' • '+a.city):'')+(a.state?('/'+a.state):'')+'</div>'
       +(a.address?('<div class="pmut">'+a.address+'</div>'):'')
       +'<div class="pmut" style="margin-top:6px">Reta: <b>'+km(d)+'</b> • Carro ~'+et.car+' min • A pé ~'+et.walk+' min</div>'
-      +'<div class="btnRow">'
-        +'<a class="btnL" href="'+gm+'" target="_blank">Google Maps</a>'
-        +'<a class="btnL" href="'+car+'" target="_blank">Rotas (carro)</a>'
-        +'<a class="btnL" href="'+walk+'" target="_blank">Rotas (a pé)</a>'
-        +'<a class="btnL" href="#" data-act="center">Tornar centro</a>'
-        +'<a class="btnL" href="#" data-act="measure">Medir daqui</a>'
-      +'</div>';
-  };
-  function addMK(a,t){
-    const ll=L.latLng(a.lat,a.lng); const mk=L.marker(ll,{icon:(t==='ec')?iconE():iconC()});
-    mk.on('click',(ev)=>{ if(ev.originalEvent && ev.originalEvent.ctrlKey){ setCenter(ll); return; } if(measuring){ measureAdd(ll);} });
-    mk.on('popupopen',(ev)=>{ ev.popup.getElement().querySelectorAll('a[data-act]').forEach(A=>A.addEventListener('click',(e)=>{ e.preventDefault(); const act=e.currentTarget.getAttribute('data-act'); if(act==='center') setCenter(ll); if(act==='measure'){ $('#measureInfo').style.display='block'; measuring=true; measureAdd(ll);} })); });
-    mk.bindPopup(mkPopup(a,ll)); return mk;
+      +'<div class="btnRow"><a class="btnL" href="'+gm+'" target="_blank">Google Maps</a><a class="btnL" href="'+car+'" target="_blank">Rotas (carro)</a><a class="btnL" href="'+walk+'" target="_blank">Rotas (a pé)</a></div>';
+    mk.bindPopup(html); return mk;
   }
-  let ecInList=[], concInList=[];
-  function refresh(){
-    LmEC.clearLayers(); LmCO.clearLayers(); const ctr=mMark.getLatLng(); ecInList=[]; concInList=[];
-    if($('#mtEC').checked){ A.ec.forEach(a=>{ const ll=L.latLng(a.lat,a.lng); addMK(a,'ec').addTo(LmEC); if(ctr.distanceTo(ll)<=S.radius*1000) ecInList.push(a); }); }
-    if($('#mtConc').checked){ A.conc.forEach(a=>{ const ll=L.latLng(a.lat,a.lng); addMK(a,'co').addTo(LmCO); if(ctr.distanceTo(ll)<=S.radius*1000) concInList.push(a); }); }
+
+  var ecInList=[], concInList=[];
+  function refresh(){ LmEC.clearLayers(); LmCO.clearLayers(); var ctr=mMark.getLatLng(); ecInList=[]; concInList=[];
+    if($('#mtEC').checked){ A.ec.forEach(function(a){ var ll=L.latLng(a.lat,a.lng); addMK(a,'ec').addTo(LmEC); if(ctr.distanceTo(ll)<=S.radius*1000) ecInList.push(a); }); }
+    if($('#mtConc').checked){ A.conc.forEach(function(a){ var ll=L.latLng(a.lat,a.lng); addMK(a,'co').addTo(LmCO); if(ctr.distanceTo(ll)<=S.radius*1000) concInList.push(a); }); }
     $('#cEC').textContent=ecInList.length; $('#cConc').textContent=concInList.length;
   }
   window.refreshM=refresh;
-
-  mMark.on('drag',()=> mCircle.setLatLng(mMark.getLatLng()));
-  mMark.on('dragend',()=>{ mCircle.setLatLng(mMark.getLatLng()); refresh(); });
-  $('#radius').oninput=(e)=>{ S.radius=+e.target.value||2; $('#rLabel').textContent=String(S.radius); mCircle.setRadius(S.radius*1000); refresh(); };
-  $('#centerBtn').onclick=()=>{ if(withinBR(m.lat,m.lng)) setCenter([m.lat,m.lng]); refresh(); };
-  $('#geocodeBtn').onclick=async()=>{ const ll=await geocode(m); if(ll){ m.lat=ll.lat; m.lng=ll.lng; mm.setView([ll.lat,ll.lng],13); setCenter([ll.lat,ll.lng]); refresh(); } else alert('Não consegui geocodificar agora.'); };
+  mMark.on('drag',function(){ mCircle.setLatLng(mMark.getLatLng()); });
+  mMark.on('dragend',function(){ mCircle.setLatLng(mMark.getLatLng()); refresh(); });
+  $('#radius').oninput=function(e){ S.radius=+e.target.value||2; $('#rLabel').textContent=String(S.radius); mCircle.setRadius(S.radius*1000); refresh(); };
+  $('#centerBtn').onclick=function(){ if(m.lat>-34&&m.lat<6) {mMark.setLatLng([m.lat,m.lng]); mCircle.setLatLng([m.lat,m.lng]); mm.panTo([m.lat,m.lng]); refresh();} };
+  $('#geocodeBtn').onclick=function(){ geocode(m).then(function(ll){ if(ll){ m.lat=ll.lat; m.lng=ll.lng; mm.setView([ll.lat,ll.lng],13); mMark.setLatLng([ll.lat,ll.lng]); mCircle.setLatLng([ll.lat,ll.lng]); refresh(); } else alert('Não consegui geocodificar agora.'); }); };
   $('#mtEC').onchange=refresh; $('#mtConc').onchange=refresh;
-  $('#measureBtn').onclick=()=>{ measuring=!measuring; $('#measureInfo').style.display=measuring?'block':'none'; if(measuring) $('#measureInfo').textContent='Régua ativa: clique em dois pontos (marcadores ou mapa).'; if(!measuring) measureReset(); };
+  $('#measureBtn').onclick=function(){ measuring=!measuring; $('#measureInfo').style.display=measuring?'block':'none'; if(measuring) $('#measureInfo').textContent='Régua ativa: clique em dois pontos.'; if(!measuring) measureReset(); };
   $('#measureClear').onclick=measureReset;
-  mm.on('click',(e)=>{ if(measuring) measureAdd(e.latlng); });
+  mm.on('click',function(e){ if(measuring){ mPts.push(e.latlng); if(mPts.length===2){ if(mLine){try{mLine.remove()}catch(e){}} mLine=L.polyline([mPts[0],mPts[1]],{color:'#687ca0',dashArray:'4,4'}).addTo(mm); var d=mm.distance(mPts[0],mPts[1]); $('#measureInfo').textContent='Distância: '+km(d)+' (reta)'; measuring=false; } }});
 
-  function openList(which){
-    const items=(which==='ec')?ecInList:concInList;
-    $('#miniTitle').textContent=(which==='ec')?'Unidades EC no raio':'Concorrentes no raio';
-    const ul=$('#miniList');
-    ul.innerHTML= items.length? items.map(a=>`<li><strong>${a.unit_name||a.brand}</strong><div class="pmut">${a.brand}${a.city?' • '+a.city:''}${a.state?'/'+a.state:''}${a.address?'<br>'+a.address:''}</div></li>`).join('') : '<li class="pmut">Nenhuma unidade dentro do raio.</li>';
-    $('#mini').style.display='flex';
+  refresh(); geocode(m).then(function(ll){ if(ll){ m.lat=ll.lat; m.lng=ll.lng; mm.setView([ll.lat,ll.lng],12); mMark.setLatLng([ll.lat,ll.lng]); mCircle.setLatLng([ll.lat,ll.lng]); refresh(); } });
+}
+$('#mClose').onclick=function(){ $('#modal').classList.remove('open'); try{mm.remove()}catch(e){} };
+$('#modal').addEventListener('click',function(e){ if(e.target.id==='modal'){ $('#modal').classList.remove('open'); try{mm.remove()}catch(e){} }});
+
+/* base municípios - cache + rede */
+var M_CACHE_KEY='mun_cache_v14', POP_YEAR_KEY='pop_year_totals_v1';
+function putSample(){ S.mun=CAPS.slice(); setStatus('Amostra (27 capitais). Carregando base completa…'); buildUFs(); apply(); }
+function fetchText(u,ms){ ms=ms||12000; return new Promise(function(res,rej){ var id=setTimeout(function(){rej(new Error('timeout'))},ms); fetch(u).then(function(r){return r.ok?r.text():Promise.reject()}).then(function(t){clearTimeout(id);res(t)}).catch(function(e){clearTimeout(id);rej(e)})}); }
+function parseCsvSmart(text){ var lines=String(text).replace(/\r/g,'').split('\n').filter(function(l){return l.trim()}); var hdr=lines.shift().split(',').map(function(h){return h.trim()}); return lines.map(function(line){ var cols=[]; var cur='',q=false; for(var i=0;i<line.length;i++){var ch=line[i]; if(ch=='"'){ if(q&&line[i+1]=='"'){cur+='"'; i++;} else q=!q; } else if(ch==',' && !q){ cols.push(cur); cur=''; } else cur+=ch; } cols.push(cur); var o={}; for(var j=0;j<hdr.length;j++) o[hdr[j]]=(cols[j]||'').trim(); return o; }); }
+function hydrateMunicipios(muniCsv,estCsv,popCsv){
+  var ms=parseCsvSmart(muniCsv), es=parseCsvSmart(estCsv), mapUF={};
+  es.forEach(function(r){ var cod=r.codigo_uf||r.codigo||r.cod||r.id; var sig=r.uf||r.sigla||r.estado; if(cod&&sig) mapUF[String(cod)]=String(sig).toUpperCase(); });
+  var totalsByYear={}; var pop22By={};
+  if(popCsv){
+    var ps=parseCsvSmart(popCsv);
+    ps.forEach(function(r){
+      var code=(r.CODMUN7||r.CODMUN||r.MUN||r.codigo||'').toString().padStart(7,'0');
+      Object.keys(r).forEach(function(k){
+        var m=/^POP(\d{2})$/i.exec(k); if(m){ var yy=2000+Number(m[1]); var val=+r[k]; if(Number.isFinite(val)){ totalsByYear[yy]=(totalsByYear[yy]||0)+val; } }
+      });
+      var p22=+(r.POP22||r.Pop22||r.pop22||r.POP||r.Pop||r.pop||0);
+      if(Number.isFinite(p22)) pop22By[code]=p22;
+    });
+    cacheSet(POP_YEAR_KEY,{ts:Date.now(),data:totalsByYear});
   }
-  $('#btnListEC').onclick = ()=>openList('ec');
-  $('#btnListConc').onclick= ()=>openList('conc');
-  $('#miniClose').onclick  = ()=> $('#mini').style.display='none';
-  $('#mini').addEventListener('click',(e)=>{ if(e.target.id==='mini') $('#mini').style.display='none'; });
-
-  refresh();
-  geocode(m).then(ll=>{ if(ll){ m.lat=ll.lat; m.lng=ll.lng; mm.setView([ll.lat,ll.lng],12); setCenter([ll.lat,ll.lng]); refresh(); } }).catch(()=>{});
+  return ms.map(function(r){
+    var cod=(r.codigo_ibge||r.cod_ibge||r.codigo||'').toString().padStart(7,'0');
+    return {codigo_ibge:cod,nome:r.nome||r.municipio||r.name||'',uf:r.uf||mapUF[r.codigo_uf]||'',lat:+r.latitude,lng:+r.longitude,pop:pop22By[cod]||0};
+  }).filter(function(m){return m.nome&&m.uf});
 }
-$('#mClose').onclick=()=>{ $('#modal').classList.remove('open'); try{mm.remove()}catch{} };
-$('#modal').addEventListener('click',(e)=>{ if(e.target.id==='modal'){ $('#modal').classList.remove('open'); try{mm.remove()}catch{} }});
-
-/* Municipios base */
-const CAPS=[['Rio Branco','AC',-9.975,-67.824,413418,'1200401'],['Maceió','AL',-9.649,-35.708,957916,'2704302'],['Macapá','AP',0.0349,-51.069,522357,'1600303'],['Manaus','AM',-3.118,-60.021,2020301,'1302603'],['Salvador','BA',-12.977,-38.501,2833127,'2927408'],['Fortaleza','CE',-3.716,-38.542,2452185,'2304400'],['Brasília','DF',-15.793,-47.882,3094325,'5300108'],['Vitória','ES',-20.315,-40.312,365855,'3205309'],['Goiânia','GO',-16.686,-49.264,1572001,'5208707'],['São Luís','MA',-2.538,-44.282,1002121,'2111300'],['Cuiabá','MT',-15.601,-56.097,651642,'5103403'],['Campo Grande','MS',-20.442,-54.646,930614,'5002704'],['Belo Horizonte','MG',-19.919,-43.938,2513451,'3106200'],['Belém','PA',-1.455,-48.489,1511996,'1501402'],['João Pessoa','PB',-7.115,-34.864,833932,'2507507'],['Curitiba','PR',-25.429,-49.271,1948626,'4106902'],['Recife','PE',-8.057,-34.882,1635019,'2611606'],['Teresina','PI',-5.091,-42.803,871126,'2211001'],['Rio de Janeiro','RJ',-22.906,-43.172,6775561,'3304557'],['Natal','RN',-5.795,-35.209,751300,'2408102'],['Porto Alegre','RS',-30.033,-51.23,1492530,'4314902'],['Porto Velho','RO',-8.760,-63.899,539354,'1100205'],['Boa Vista','RR',2.823,-60.675,413486,'1400100'],['Florianópolis','SC',-27.594,-48.547,537211,'4205407'],['São Paulo','SP',-23.550,-46.633,12396372,'3550308'],['Aracaju','SE',-10.911,-37.071,602757,'2800308'],['Palmas','TO',-10.167,-48.327,313349,'1721000']].map(x=>({nome:x[0],uf:x[1],lat:x[2],lng:x[3],pop:x[4],codigo_ibge:x[5]}));
+function loadFromNet(){
+  var muniURLs=['https://cdn.jsdelivr.net/gh/kelvins/municipios-brasileiros/csv/municipios.csv','https://raw.githubusercontent.com/kelvins/municipios-brasileiros/main/csv/municipios.csv'];
+  var ufURLs=['https://cdn.jsdelivr.net/gh/kelvins/municipios-brasileiros/csv/estados.csv','https://raw.githubusercontent.com/kelvins/municipios-brasileiros/main/csv/estados.csv'];
+  var popURLs=['https://cdn.jsdelivr.net/gh/lsbastos/popBR_mun/poptcu2010-2022_2024.csv','https://raw.githubusercontent.com/lsbastos/popBR_mun/master/poptcu2010-2022_2024.csv'];
+  var muniCsv, estCsv, popCsv;
+  return fetchText(muniURLs[0]).then(function(t){muniCsv=t}).catch(function(){return fetchText(muniURLs[1]).then(function(t){muniCsv=t})})
+    .then(function(){return fetchText(ufURLs[0]).then(function(t){estCsv=t}).catch(function(){return fetchText(ufURLs[1]).then(function(t){estCsv=t})})})
+    .then(function(){return fetchText(popURLs[0],15000).then(function(t){popCsv=t}).catch(function(){return fetchText(popURLs[1],15000).then(function(t){popCsv=t})})})
+    .then(function(){ if(!muniCsv||!estCsv) throw 0; S.mun=hydrateMunicipios(muniCsv,estCsv,popCsv); cacheSet(M_CACHE_KEY,{ts:Date.now(),data:S.mun}); setStatus('Base completa carregada: '+S.mun.length+' municípios'); buildUFs(); apply(); });
+}
 function loadMunicipios(){
-  S.mun = CAPS.slice(); setStatus('Amostra (27 capitais). Carregando base completa…'); buildUFs(); apply();
-  const c=cacheGet('mun_cache_v13'); if(c&&Date.now()-c.ts<1000*60*60*24*60){ S.mun=c.data; setStatus('Base completa (cache): '+S.mun.length+' municípios'); buildUFs(); apply(); return; }
-  const muniURLs=['https://cdn.jsdelivr.net/gh/kelvins/municipios-brasileiros/csv/municipios.csv','https://raw.githubusercontent.com/kelvins/municipios-brasileiros/main/csv/municipios.csv'];
-  const ufURLs  =['https://cdn.jsdelivr.net/gh/kelvins/municipios-brasileiros/csv/estados.csv','https://raw.githubusercontent.com/kelvins/municipios-brasileiros/main/csv/estados.csv'];
-  const popURLs =['https://raw.githubusercontent.com/lsbastos/popBR_mun/refs/heads/master/poptcu2010-2022_2024.csv','https://cdn.jsdelivr.net/gh/lsbastos/popBR_mun/poptcu2010-2022_2024.csv'];
-  const get=(u,ms=12000)=>new Promise((res,rej)=>{const id=setTimeout(()=>rej(0),ms); fetch(u).then(r=>r.ok?r.text():Promise.reject()).then(t=>{clearTimeout(id);res(t)}).catch(()=>{clearTimeout(id);rej(0)});});
-  (async()=>{
-    try{
-      let muniCsv,estCsv,popCsv;
-      for(const u of muniURLs){ if(!muniCsv) try{ muniCsv=await get(u);}catch{} }
-      for(const u of ufURLs){ if(!estCsv) try{ estCsv=await get(u);}catch{} }
-      for(const u of popURLs){ if(!popCsv) try{ popCsv=await get(u,15000);}catch{} }
-      if(!muniCsv||!estCsv) throw 0;
-      const ms=csvParse(muniCsv), es=csvParse(estCsv), mapUF=Object.fromEntries(es.map(r=>[r.codigo_uf,r.uf]));
-      const ps=popCsv?csvParse(popCsv):[], popBy={}; ps.forEach(r=>{ const code=(r.CODMUN7||r.CODMUN||r.MUN||'').trim(); const p22=r.POP22||r.Pop22||r.pop22||r.Pop||r.POP; if(code&&p22&&!isNaN(p22)) popBy[String(code).padStart(7,'0')]=Number(p22); });
-      const data=ms.map(r=>({codigo_ibge:r.codigo_ibge,nome:r.nome,uf:mapUF[r.codigo_uf]||'',lat:+r.latitude,lng:+r.longitude,pop:0})).map(m=>({...m,pop: popBy[String(m.codigo_ibge).padStart(7,'0')] ?? 0}));
-      S.mun=data; cacheSet('mun_cache_v13',{ts:Date.now(),data}); setStatus('Base completa carregada: '+S.mun.length+' municípios'); buildUFs(); apply();
-    }catch(_){ setStatus('Sem rede para base completa (mantida amostra).'); }
-  })();
+  putSample();
+  var c=cacheGet(M_CACHE_KEY);
+  if(c && c.data && (Date.now()-c.ts < 1000*60*60*24*60)){
+    S.mun=c.data; setStatus('Base completa (cache): '+S.mun.length+' municípios'); buildUFs(); apply();
+  } else {
+    loadFromNet().catch(function(){ setStatus('Amostra offline. Clique "Atualizar base" quando tiver internet.'); });
+  }
+}
+$('#forceReload').onclick=function(){ try{localStorage.removeItem(M_CACHE_KEY)}catch(e){} setStatus('Atualizando…'); loadMunicipios(); };
+
+/* upload EC/Concorrentes */
+function splitCsvLine(line){ var out=[],L=line.length,cur='',q=false; for(var i=0;i<L;i++){var ch=line[i]; if(ch==='\"'){if(q&&line[i+1]==='\"'){cur+='\"';i++;}else q=!q;} else if(ch===','&&!q){out.push(cur);cur='';} else cur+=ch;} out.push(cur); return out;}
+function parseCsvRows(text){ var lines=String(text).replace(/\r/g,'').split('\n').filter(function(l){return l.trim()}); var hdr=splitCsvLine(lines.shift()).map(function(h){return h.trim().toLowerCase()}); return lines.map(function(line){var cols=splitCsvLine(line); var o={}; for(var i=0;i<hdr.length;i++) o[hdr[i]]=(cols[i]||'').trim(); return o;}); }
+function simplifyBrand(s){ var t=(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); var CAN={'smart fit':'Smart Fit','smartfit':'Smart Fit','bluefit':'Bluefit','selfit':'Selfit','skyfit':'Skyfit','ad3':'AD3','panobianco':'Panobianco','pratique':'Pratique Fitness','phd sports':'Ph.D Sports','ph.d':'Ph.D Sports','phd':'Ph.D Sports'}; for(var k in CAN){ if(t.indexOf(k)>-1) return CAN[k]; } return s||'';}
+function mapRow(r,type){ function pick(o,cs){for(var i=0;i<cs.length;i++){var k=cs[i]; if(o[k]!=null&&String(o[k]).trim()!=='')return o[k];}return''} var brandRaw=pick(r,['brand','marca']); var unit=pick(r,['unit_name','unidade','nome_unidade','nome'])||brandRaw||(type==='ec'?'Unidade EC':''); var address=pick(r,['address','endereco','endereço']); var city=pick(r,['city','cidade']); var uf=(pick(r,['state','uf','estado'])||'').toUpperCase().slice(0,2); var lat=toNum(pick(r,['lat','latitude'])); var lng=toNum(pick(r,['lng','lon','long','longitude'])); var brand=type==='ec'?'Unidade EC':(brandRaw||''); if(type==='conc'&&!brand) brand=simplifyBrand(unit); return {brand:brand, unit_name:unit, address:address, city:city, state:uf, lat:lat, lng:lng, ours:(type==='ec')}; }
+function loadAcademias(text,type){ var rows=parseCsvRows(text).map(function(r){return mapRow(r,type)}).filter(function(o){return Number.isFinite(o.lat)&&Number.isFinite(o.lng)}); A[type]=rows; renderMain(); fitAll(); }
+$('#btnEC').onclick=function(){ $('#fileEC').click(); };
+$('#btnConc').onclick=function(){ $('#fileConc').click(); };
+$('#fileEC').onchange=function(ev){ var f=ev.target.files && ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{loadAcademias(r.result,'ec')}catch(e){alert('Falha EC: '+e.message)} }; r.readAsText(f,'utf-8'); };
+$('#fileConc').onchange=function(ev){ var f=ev.target.files && ev.target.files[0]; if(!f) return; var r=new FileReader(); r.onload=function(){ try{loadAcademias(r.result,'conc')}catch(e){alert('Falha Conc: '+e.message)} }; r.readAsText(f,'utf-8'); };
+
+/* ====== ANALYTICS ====== */
+var AN={ ready:false };
+var BRANDS=[ // concorrentes
+  {key:'smartfit',  name:'Smart Fit',        color:'#5ad1ff'},
+  {key:'bluefit',   name:'Bluefit',          color:'#4b8bff'},
+  {key:'skyfit',    name:'Skyfit',           color:'#7dd3fc'},
+  {key:'selfit',    name:'Selfit',           color:'#ff82c0'},
+  {key:'panobianco',name:'Panobianco',       color:'#ffcc66'},
+  {key:'ad3',       name:'AD3',              color:'#a7f3d0'},
+  {key:'phd',       name:'Ph.D Sports',      color:'#fca5a5'},
+  {key:'pratique',  name:'Pratique Fitness', color:'#b6f542'},
+];
+function getBrandStore(){ return cacheGet('brand_v2') || {}; }
+function setBrandStore(v){ cacheSet('brand_v2',v); }
+function sumSeriesMonthly(store, keys){
+  var acc={}; keys.forEach(function(k){ var u=(store[k]&&store[k].units)||{}; Object.keys(u).forEach(function(m){ var v=+u[m]||0; acc[m]=(acc[m]||0)+v; });});
+  var labels=Object.keys(acc).sort(); return {labels:labels,data:labels.map(function(l){return acc[l]})};
+}
+function deltaFmt(cur,prev){ if(!prev) return '0.0%'; var d=((cur-prev)/prev*100); return (d>=0?'+':'')+d.toFixed(1)+'%'; }
+
+/* EC destaque */
+function renderEC(){
+  var store=getBrandStore(); var ec= store.ec || {units:{},ig:0,tt:0,infTotal:0};
+  var months=Object.keys(ec.units||{}).sort();
+  var last=months[months.length-1]; var u= last? (+ec.units[last]||0) : 0;
+  var reach=(+ec.ig||0) + (+ec.infTotal||0);
+  $('#ecUnits').textContent=fmt(u); $('#ecReach').textContent=fmt(reach);
+  $('#ecUpdate').onclick=function(){ openBrandModal('ec','Engenharia do Corpo'); };
 }
 
-/* Uploads base EC/Concorrentes */
-function simplifyBrand(s){ const t=(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(); const CAN={'smart fit':'Smart Fit','smartfit':'Smart Fit','bluefit':'Bluefit','selfit':'Selfit','skyfit':'Skyfit','ad3':'AD3','panobianco':'Panobianco','pratique':'Pratique Fitness','phd sports':'Ph.D Sports','ph.d sports':'Ph.D Sports','phd':'Ph.D Sports'}; for(const k in CAN){ if(t.includes(k)) return CAN[k]; } return s||'';}
-function mapRow(r,type){
-  const pick=(o,cs)=>{for(const k of cs){if(o[k]!=null&&String(o[k]).trim()!=='')return o[k];}return''};
-  const brandRaw=pick(r,['brand','marca']); const unit=pick(r,['unit_name','unidade','nome_unidade','nome'])||brandRaw||(type==='ec'?'Unidade EC':'');
-  const address=pick(r,['address','endereco','endereço']); const city=pick(r,['city','cidade']); const uf=(pick(r,['state','uf','estado'])||'').toUpperCase().slice(0,2);
-  const lat=toNum(pick(r,['lat','latitude'])); const lng=toNum(pick(r,['lng','lon','long','longitude']));
-  let brand=type==='ec'?'Unidade EC':(brandRaw||''); if(type==='conc'&&!brand) brand=simplifyBrand(unit);
-  return {brand, unit_name:unit, address, city, state:uf, lat, lng, ours:(type==='ec')};
+/* grade concorrentes */
+function renderBrands(){
+  var grid=$('#brandGrid'); grid.innerHTML='';
+  var store=getBrandStore();
+  BRANDS.forEach(function(b){
+    var series=(store[b.key]&&store[b.key].units)||{};
+    var months=Object.keys(series).sort();
+    var cur= +series[months[months.length-1]] || 0;
+    var prv= +series[months[months.length-2]] || 0;
+    var dlt=deltaFmt(cur,prv);
+    var good=(cur-prv)<=0;
+    var card=document.createElement('div'); card.className='brandCard';
+    card.innerHTML='<h4 style="color:'+b.color+'">'+b.name+'</h4>'
+      +'<div class="brandMeta"><span>Unidades:</span><b>'+fmt(cur)+'</b><span class="delta '+(good?'good':'bad')+'">'+dlt+'</span></div>'
+      +'<div class="bBtns"><button class="btn" data-k="'+b.key+'">Atualizar</button></div>';
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('button[data-k]').forEach(function(btn){ btn.onclick=function(){ openBrandModal(btn.dataset.k, BRANDS.find(function(x){return x.key===btn.dataset.k}).name); }; });
 }
-function loadAcademias(text,type){ const rows=parseCsvSmart(text).map(r=>mapRow(r,type)).filter(o=>Number.isFinite(o.lat)&&Number.isFinite(o.lng)); A[type]=rows; renderMain(); fitAll(); }
 
-/* BOOT */
+/* KPIs */
+function updateKPIs(){
+  var store=getBrandStore(); var keys=BRANDS.map(function(b){return b.key});
+  var conc=sumSeriesMonthly(store, keys);
+  var a=conc.data[conc.data.length-1]||0, b=conc.data[conc.data.length-2]||0;
+  var pct=b?((a-b)/b*100):0; $('#kpiConc').textContent=(pct>=0?'+':'')+pct.toFixed(1)+'%';
+
+  var popC=cacheGet(POP_YEAR_KEY), labels, data;
+  if(popC){ labels=Object.keys(popC.data).map(function(x){return +x}).sort(function(c,d){return c-d}); data=labels.map(function(y){return popC.data[y]||0}); }
+  else { labels=[2018,2019,2020,2021,2022,2023,2024]; data=[209e6,211e6,212e6,213e6,214e6,215e6,216e6]; }
+  var by=$('#baseYear'); by.innerHTML=''; labels.forEach(function(y){ var o=document.createElement('option'); o.value=y; o.textContent=y; by.appendChild(o); }); by.value=labels[0];
+  function upd(){ var lastv=data[data.length-1]; var base=data[labels.indexOf(+by.value)]||data[0]; var pct=base?((lastv-base)/base*100):0; $('#kpiPop').textContent=(pct>=0?'+':'')+pct.toFixed(1)+'%'; }
+  by.onchange=upd; upd();
+}
+
+/* Modal de marca + influencers */
+var editingKey=null, editingName='Marca';
+function openBrandModal(key,displayName){
+  editingKey=key; editingName=displayName||'Marca';
+  $('#brandTitle').textContent='Atualizar — '+editingName;
+  var store=getBrandStore(); var d= store[key] || {units:{},ig:0,tt:0,infTotal:0,influencers:[]};
+  $('#bUnits').value=''; $('#bIg').value=d.ig||''; $('#bTt').value=d.tt||''; $('#bInfTotal').value=d.infTotal||'';
+  $('#brandModal').classList.add('open');
+}
+$('#brandClose').onclick=function(){ $('#brandModal').classList.remove('open'); };
+$('#bSave').onclick=function(){
+  var store=getBrandStore(); var d= store[editingKey] || {units:{},ig:0,tt:0,infTotal:0,influencers:[]};
+  var mk=thisMonthKey(); var u= +($('#bUnits').value||0); if(u>0) d.units[mk]=u;
+  d.ig= +($('#bIg').value||0); d.tt= +($('#bTt').value||0); d.infTotal= +($('#bInfTotal').value||0);
+  store[editingKey]=d; setBrandStore(store);
+  $('#brandModal').classList.remove('open'); renderEC(); renderBrands(); updateKPIs();
+};
+$('#btnOpenInf').onclick=function(){
+  var store=getBrandStore(); var d= store[editingKey] || {influencers:[]};
+  var list=d.influencers||[]; var box=$('#infList'); box.innerHTML='';
+  if(list.length===0) list=[{name:'',followers:0}];
+  list.forEach(function(it){ box.appendChild(infRow(it.name,it.followers)); });
+  $('#infTitle').textContent='Influenciadores — '+editingName;
+  $('#infModal').classList.add('open');
+};
+function infRow(name,followers){
+  var r=document.createElement('div'); r.style.display='grid'; r.style.gridTemplateColumns='1fr 160px 36px'; r.style.gap='8px'; r.style.alignItems='center';
+  r.innerHTML='<input class="input" placeholder="@perfil" value="'+(name||'')+'"/><input class="input" type="number" placeholder="seguidores" value="'+(followers||'')+'"/><button class="btn infDel" type="button">×</button>';
+  r.querySelector('.infDel').onclick=function(){ r.remove(); }; return r;
+}
+$('#infAdd').onclick=function(){ $('#infList').appendChild(infRow('',0)); };
+$('#infClose').onclick=function(){ $('#infModal').classList.remove('open'); };
+$('#infSave').onclick=function(){
+  var rows=[].slice.call($('#infList').children);
+  var items=rows.map(function(r){ return { name: r.querySelector('input:nth-child(1)').value.trim(), followers: +(r.querySelector('input:nth-child(2)').value||0)} }).filter(function(x){return x.name});
+  var total=items.reduce(function(s,x){return s+(x.followers||0)},0);
+  var store=getBrandStore(); var d= store[editingKey] || {};
+  d.influencers=items; d.infTotal=total; store[editingKey]=d; setBrandStore(store);
+  $('#bInfTotal').value=total; $('#infModal').classList.remove('open'); renderEC();
+};
+
+/* Upload area (apenas lista local) */
+(function(){
+  var drop=$('#dropArea'), inp=$('#fileRepo'), list=$('#fileList');
+  function show(files){ if(!files||!files.length){ list.textContent='Nenhum arquivo enviado ainda.'; return; }
+    list.innerHTML=''; [].forEach.call(files,function(f){ var li=document.createElement('div'); li.textContent='• '+f.name+' — '+fmt(f.size)+' bytes'; list.appendChild(li); });
+  }
+  drop.addEventListener('dragover',function(e){ e.preventDefault(); drop.style.opacity=.9; });
+  drop.addEventListener('dragleave',function(){ drop.style.opacity=1; });
+  drop.addEventListener('drop',function(e){ e.preventDefault(); drop.style.opacity=1; var fs=e.dataTransfer.files; show(fs); });
+  inp.addEventListener('change',function(e){ show(e.target.files); });
+})();
+
+/* Gerador de relatório (HTML simples) */
+$('#repMake').onclick=function(){
+  var m=$('#repMonth').value.trim()||'(mês não informado)';
+  var notes=$('#repNotes').value.trim()||'—';
+  var includeCharts=$('#repCharts').checked; /* reservado para evolução */
+  var store=getBrandStore();
+  function valUnits(key){ var u=store[key]&&store[key].units||{}; var ks=Object.keys(u).sort(); return fmt(+u[ks[ks.length-1]]||0); }
+  var html='<!doctype html><meta charset="utf-8"><title>Relatório — '+m+'</title><style>body{font:14px/1.45 system-ui,Arial;color:#111;margin:24px} h1{margin:0 0 8px} .muted{color:#555} table{border-collapse:collapse;width:100%;margin:12px 0} td,th{border:1px solid #ddd;padding:8px;text-align:left}</style>';
+  html+='<h1>Relatório mensal — '+m+'</h1><div class="muted">Gerado via GeoAnalytics EC</div>';
+  html+='<h2>Engenharia do Corpo</h2><ul><li>Unidades: '+$('#ecUnits').textContent+'</li><li>Alcance: '+$('#ecReach').textContent+'</li></ul>';
+  html+='<h2>Concorrentes</h2><table><tr><th>Marca</th><th>Unidades (mês)</th></tr>';
+  BRANDS.forEach(function(b){ html+='<tr><td>'+b.name+'</td><td>'+valUnits(b.key)+'</td></tr>';});
+  html+='</table><h2>Observações</h2><p>'+notes.replace(/\n/g,'<br>')+'</p>';
+  var blob=new Blob([html],{type:'text/html;charset=utf-8'}); var url=URL.createObjectURL(blob);
+  var a=document.createElement('a'); a.href=url; a.download='Relatorio_'+m.replace(/\s+/g,'_')+'.html'; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(url); a.remove();},100);
+};
+
+/* Boot geral */
 function boot(){
-  initMap();
-  $('#btnEC').onclick = ()=> $('#fileEC').click();
-  $('#btnConc').onclick= ()=> $('#fileConc').click();
-  $('#fileEC').onchange  = ev=>{ const f=ev.target.files?.[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{loadAcademias(r.result,'ec')}catch(e){alert('Falha EC: '+e.message)} }; r.readAsText(f,'utf-8'); };
-  $('#fileConc').onchange= ev=>{ const f=ev.target.files?.[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ try{loadAcademias(r.result,'conc')}catch(e){alert('Falha Conc: '+e.message)} }; r.readAsText(f,'utf-8'); };
-  $('#forceReload').onclick=()=>{ try{localStorage.removeItem('mun_cache_v13')}catch{} setStatus('Atualizando…'); loadMunicipios(); };
-  loadMunicipios();
-  window.addEventListener('error',(e)=> setStatus('Erro: '+(e.message||'desconhecido')));
+  initMap(); loadMunicipios();
+  window.addEventListener('error',function(e){ $('#status').textContent='Erro: '+(e.message||'desconhecido'); });
   setTab('map');
 }
 if(document.readyState!=='loading') boot(); else document.addEventListener('DOMContentLoaded', boot);
 
-/* ====== Página ANALYTICS ====== */
-const AN={ ready:false, series:null, popY:null, chConc:null, chPop:null, brands:['Smart Fit','Bluefit','Skyfit','Selfit','Panobianco','AD3','Ph.D Sports','Pratique Fitness'] };
-function anSeriesKey(){ return 'an_conc_series_v2'; }
-function anBrandKey(b){ return 'an_brand_'+b.replace(/\W+/g,'_'); }
-function anInfluKey(b){ return 'an_influ_'+b.replace(/\W+/g,'_'); }
-function monthId(d){ return d.toISOString().slice(0,7); }
-function last12(){ const out=[]; const now=new Date(); for(let i=11;i>=0;i--){ const dt=new Date(now.getFullYear(), now.getMonth()-i, 1); out.push(monthId(dt)); } return out; }
-
-function sampleSeries(){ const labels=last12(); const byBrand={}; AN.brands.forEach((b,i)=>{ byBrand[b]=labels.map((_,k)=> 30+i*2 + Math.round(6*Math.sin((k+i)/2)+Math.random()*4)); }); return {labels, byBrand}; }
-function samplePop(){ const y=[],d=[]; for(let i=2018;i<=2024;i++){ y.push(i); d.push(210000000+(i-2018)*1800000+Math.round(Math.random()*200000)); } return {labels:y,data:d}; }
-
-function anLoad(){
-  AN.series = cacheGet(anSeriesKey()) || sampleSeries();
-  AN.popY  = cacheGet('an_pop_v1') || samplePop();
-  // KPIs
-  const totalLast = AN.brands.reduce((s,b)=> s + AN.series.byBrand[b].at(-1), 0);
-  const totalPrev = AN.brands.reduce((s,b)=> s + AN.series.byBrand[b].at(-2), 0);
-  const pct = totalPrev? ((totalLast-totalPrev)/totalPrev*100):0;
-  $('#kpiConc').textContent = (pct>=0?'+':'')+pct.toFixed(1)+'%';
-  // base ano
-  const by=$('#baseYear'); by.innerHTML='';
-  AN.popY.labels.forEach(y=>{ const o=document.createElement('option'); o.value=y; o.textContent=y; by.appendChild(o); });
-  by.value=String(AN.popY.labels[0]);
-  by.onchange=()=>anUpdatePopKPI();
-  anUpdatePopKPI();
-}
-function anUpdatePopKPI(){
-  const lbls=AN.popY.labels, vals=AN.popY.data, baseYear=+$('#baseYear').value;
-  const last=vals.at(-1), idx=lbls.indexOf(baseYear), base= idx>=0? vals[idx] : vals[0];
-  const pct = base? ((last-base)/base*100):0;
-  $('#kpiPop').textContent = (pct>=0?'+':'')+pct.toFixed(1)+'%';
-}
-
-function anCharts(){
-  const ctx1=$('#chConc');
-  if(AN.chConc) AN.chConc.destroy();
-  const ds = AN.brands.map((b,idx)=>({ label:b, data:AN.series.byBrand[b], tension:.25 }));
-  AN.chConc=new Chart(ctx1,{type:'line',data:{labels:AN.series.labels,datasets:ds},options:{plugins:{legend:{position:'bottom'}},scales:{x:{grid:{display:false}}}}});
-  const ctx2=$('#chPop'); if(AN.chPop) AN.chPop.destroy();
-  AN.chPop=new Chart(ctx2,{type:'bar',data:{labels:AN.popY.labels,datasets:[{label:'População',data:AN.popY.data}]},options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}}}}});
-}
-
-function brandCard(b){
-  const k=anBrandKey(b); const data=cacheGet(k) || {units:0, ig:0, tt:0, inflTotal:0};
-  const wrap=document.createElement('div'); wrap.className='brandCard';
-  wrap.innerHTML = `
-    <div class="brandHead">
-      <div class="brandName">${b}</div>
-      <button class="btn btnEdit">Atualizar</button>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-      <div class="badgeMini">Unidades<br><b>${fmt(data.units)}</b></div>
-      <div class="badgeMini">Instagram<br><b>${fmt(data.ig)}</b></div>
-      <div class="badgeMini">TikTok<br><b>${fmt(data.tt)}</b></div>
-      <div class="badgeMini">Influenciadores (soma)<br><b>${fmt(data.inflTotal)}</b></div>
-    </div>
-    <canvas height="90" class="miniChart"></canvas>
-  `;
-  wrap.querySelector('.btnEdit').onclick=()=> openBrandModal(b);
-  // mini chart (12 meses dessa marca)
-  const c=wrap.querySelector('.miniChart');
-  new Chart(c,{type:'line',data:{labels:AN.series.labels,datasets:[{label:b,data:AN.series.byBrand[b],tension:.25}]},options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{display:false}}}});
-  return wrap;
-}
-function renderBrands(){
-  const grid=$('#brandGrid'); grid.innerHTML='';
-  AN.brands.forEach(b=> grid.appendChild(brandCard(b)));
-}
-
-/* Modal Marca + Influencers */
-let editingBrand=null;
-function openBrandModal(b){
-  editingBrand=b;
-  const k=anBrandKey(b); const data=cacheGet(k)||{units:0,ig:0,tt:0,inflTotal:0};
-  $('#mdBrandTitle').textContent='Atualizar — '+b;
-  $('#bUnits').value=data.units||'';
-  $('#bIg').value=data.ig||'';
-  $('#bTt').value=data.tt||'';
-  $('#bInflTotal').value=data.inflTotal||'';
-  $('#mdBrand').style.display='flex';
-}
-$('#mdBrandClose').onclick=()=> $('#mdBrand').style.display='none';
-$('#bSave').onclick=()=>{
-  if(!editingBrand) return;
-  const k=anBrandKey(editingBrand);
-  const data={ units:+$('#bUnits').value||0, ig:+$('#bIg').value||0, tt:+$('#bTt').value||0, inflTotal:+$('#bInflTotal').value||0 };
-  cacheSet(k,data);
-  renderBrands();
-  $('#mdBrand').style.display='none';
-};
-$('#btnOpenInfl').onclick=()=>{
-  if(!editingBrand) return;
-  const key=anInfluKey(editingBrand);
-  const list=cacheGet(key)||[];
-  $('#mdInflTitle').textContent='Influenciadores — '+editingBrand;
-  const cont=$('#inflList'); cont.innerHTML='';
-  list.forEach((it,idx)=> cont.appendChild(inflRow(it.name,it.followers,idx)));
-  if(list.length===0) cont.appendChild(inflRow('','',0));
-  $('#mdInfl').style.display='flex';
-};
-function inflRow(name='',followers='',idx=0){
-  const r=document.createElement('div'); r.className='inflItem';
-  r.innerHTML=`<input class="inputSm inflName" placeholder="@perfil" value="${name||''}"/>
-               <input class="inputSm inflFollowers" type="number" placeholder="seguidores" value="${followers||''}"/>
-               <button class="btn inflDel" type="button">–</button>`;
-  r.querySelector('.inflDel').onclick=()=> r.remove();
-  return r;
-}
-$('#inflAdd').onclick=()=> $('#inflList').appendChild(inflRow());
-$('#mdInflClose').onclick=()=> $('#mdInfl').style.display='none';
-$('#inflSave').onclick=()=>{
-  if(!editingBrand) return;
-  const rows = Array.from($('#inflList').children);
-  const list = rows.map(r=>({ name: r.querySelector('.inflName').value.trim(), followers: +(r.querySelector('.inflFollowers').value||0) }))
-                   .filter(x=>x.name||x.followers>0);
-  cacheSet(anInfluKey(editingBrand), list);
-  const total = list.reduce((s,x)=> s + (x.followers||0), 0);
-  const k=anBrandKey(editingBrand);
-  const data=cacheGet(k)||{units:0,ig:0,tt:0,inflTotal:0};
-  data.inflTotal = total; cacheSet(k,data);
-  $('#bInflTotal').value = total;
-  renderBrands();
-  $('#mdInfl').style.display='none';
-};
-
-function anBoot(){
-  anLoad();
-  anCharts();
-  renderBrands();
-}
-
-/* Inicialização da aba Analytics é disparada no clique da tab */
+function anBoot(){ renderEC(); renderBrands(); updateKPIs(); }
 </script>
 </body>
 </html>
-
